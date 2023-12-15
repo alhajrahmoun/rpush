@@ -7,8 +7,8 @@ module Rpush
 
         self.table_name = 'rpush_notifications'
 
-        serialize :registration_ids, code: Array
-        serialize :url_args, code: Array
+        serialize :registration_ids, coder: Array
+        serialize :url_args, coder: Array
 
         belongs_to :app, class_name: 'Rpush::Client::ActiveRecord::App'
 
