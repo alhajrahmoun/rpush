@@ -11,8 +11,8 @@ module Rpush
           serialize :registration_ids, String
           serialize :url_args, String
         else
-          serialize :registration_ids, coder: String
-          serialize :url_args, coder: String
+          serialize :registration_ids, coder: YAML
+          serialize :url_args, coder: YAML
         end
 
         belongs_to :app, class_name: 'Rpush::Client::ActiveRecord::App'
