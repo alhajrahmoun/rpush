@@ -7,8 +7,13 @@ module Rpush
 
         self.table_name = 'rpush_notifications'
 
-        serialize :registration_ids, String
-        serialize :url_args, String
+        if ActiveRecord.gem_version < Gem::Version.new('7.1')
+          serialize :registration_ids, String
+          serialize :url_args, String
+        else
+          serialize :registration_ids, coder: String
+          serialize :url_args, coder: String
+        end
 
         belongs_to :app, class_name: 'Rpush::Client::ActiveRecord::App'
 
