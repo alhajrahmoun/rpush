@@ -7,7 +7,7 @@ module Rpush
 
         self.table_name = 'rpush_notifications'
 
-        if ActiveRecord.gem_version < Gem::Version.new('7.1')
+        if ::ActiveRecord.gem_version < Gem::Version.new('7.1')
           serialize :registration_ids, String
           serialize :url_args, String
         else
