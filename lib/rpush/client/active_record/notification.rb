@@ -7,13 +7,10 @@ module Rpush
 
         self.table_name = 'rpush_notifications'
 
-        if ActiveRecord.gem_version < Gem::Version.new('7.1')
-          serialize :registration_ids, String
-          serialize :url_args, String
-        else
-          serialize :registration_ids, coder: String
-          serialize :url_args, coder: String
-        end
+        self.default_column_serializer = YAML if respond_to?(:default_column_serializer)
+
+        serialize :registration_ids
+        serialize :url_args
 
         belongs_to :app, class_name: 'Rpush::Client::ActiveRecord::App'
 
